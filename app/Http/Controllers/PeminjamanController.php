@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Peminjaman;
+use App\Models\Buku;
 
 class PeminjamanController extends Controller
 {
@@ -12,10 +13,16 @@ class PeminjamanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
+        $bukus = Buku::all();
         $pinjams = Peminjaman::all();
-        return view('admin.peminjaman', compact('pinjams'));
+        return view('admin.peminjaman', compact('bukus', 'pinjams'));
     }
 
     /**
@@ -50,10 +57,9 @@ class PeminjamanController extends Controller
             'notelp' => 'required|numeric'
         ], $massage);
 
-        Peminjaman::create([
-        ]);
+        Peminjaman::create();
 
-        return redirect('admin.peminjaman');
+        return redirect('admin.riwayat');
     }
 
     /**

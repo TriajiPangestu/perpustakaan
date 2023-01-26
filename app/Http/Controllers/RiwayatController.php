@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Riwayat;
 
 class RiwayatController extends Controller
 {
@@ -11,6 +12,11 @@ class RiwayatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $riwayats = Riwayat::all();

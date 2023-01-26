@@ -14,7 +14,7 @@ class Buku extends Model
     protected $guard = [];
     protected $table = 'buku';
 
-    public function kategori() {
+    public function category() {
         return $this->belongsTo(Kategori::class);
     }
 

@@ -19,29 +19,39 @@
                 @endif --}}
                 <form method="POST" action="">
                     @csrf
-                    @foreach ($pinjams as $pinjam)
                     <div class="form-group">
                         <label for="name">Nama</label>
-                        <input type="text" value="{{ $pinjam->user->name }}" class="form-control" id="name" name="name">
+                        <input type="text" value="" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
                         <label for="jurusan">Jurusan</label>
                         <select class="form-control form-select" name="jurusan" id="jurusan">
-                            <option value="">{{ $pinjam->siswa->jurusan }}</option>
+                            <option value="">RPL</option>
+                            <option value="">DKV</option>
+                            <option value="">PSPT</option>
+                            <option value="">OTKP</option>
+                            <option value="">AKL</option>
+                            <option value="">BDPM</option>
+                            <option value="">PH</option>
+                            <option value="">TKJ</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="kelas">Kelas</label>
                         <select class="form-control form-select" id="kelas" name="kelas">
-                            <option value="">{{ $pinjam->siswa->kelas }}</option>
+                            <option value="">10</option>
+                            <option value="">11</option>
+                            <option value="">12</option>
                         </select>
                     </div>
                     <div class="form-group">
                       <label for="kelas">Judul Buku</label>
                       <select class="form-control form-select" id="buku" name="buku">
-                          <option value="">{{ $pinjam->buku->judul }}</option>
+                       @foreach ($bukus as $buku)
+                          <option value="">{{ $buku->judul }}</option>
+                        @endforeach
                       </select>
-                  </div>
+                    </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal</label>
                         <input type="date" class="form-control" id="tanggal" name="tanggal">
@@ -50,9 +60,8 @@
                         <label for="no_telp">Nomor Telepon</label>
                         <input type="number" class="form-control" id="notelp" name="notelp" >
                     </div>
-                    @endforeach
                     <div class="form-group">
-                        <form action="">
+                        <form action="{{ route('peminjaman.store') }}" method="POST">
                             <input type="button" class="btn btn-sm btn-success" name="simpan" value="simpan">
                             <input type="button" class="btn btn-sm btn-danger" value="batal">
                         </form>

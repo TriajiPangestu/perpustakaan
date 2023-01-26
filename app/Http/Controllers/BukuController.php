@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Buku;
+use App\Models\Kategori;
 
 class BukuController extends Controller
 {
@@ -12,10 +13,16 @@ class BukuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $bukus = Buku::all();
-        return view('admin.buku', compact('bukus'));
+        $kategoris = Kategori::all();
+        $bukus = Buku::with('category')->get();
+        return view('admin.buku', compact('bukus', 'kategoris'));
     }
 
     /**

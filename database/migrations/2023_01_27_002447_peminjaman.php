@@ -22,7 +22,7 @@ return new class extends Migration
             $table->bigInteger('id_jurusan')->unsigned();
             $table->foreign('id_jurusan')->references('id')->on('jurusan')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('id_kelas')->unsigned();
-            $table->foreign('id_kelas')->references('id')->on('jurusan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('no_telp');
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
