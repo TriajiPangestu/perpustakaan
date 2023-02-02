@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('buku', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_kategori')->unsigned();
-            $table->foreign('id_kategori')->references('id')->on('kategori')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('kode');
             $table->string('judul');
-            $table->string('sinopsis');
+            $table->string('kategori');
+            $table->text('sinopsis');
+            $table->integer('qty');
             $table->timestamps();
         });
     }

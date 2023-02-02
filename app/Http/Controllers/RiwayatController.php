@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Riwayat;
+use App\Models\Peminjaman;
+use App\Models\Buku;
 
 class RiwayatController extends Controller
 {
@@ -19,8 +21,10 @@ class RiwayatController extends Controller
     
     public function index()
     {
+        $buku = Buku::all();
+        $pinjams = Peminjaman::all();
         $riwayats = Riwayat::all();
-        return view('admin.riwayat', compact('riwayats'));
+        return view('admin.riwayat', compact('pinjams', 'riwayats'));
     }
 
     /**

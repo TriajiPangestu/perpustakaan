@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Peminjaman;
 use App\Models\Buku;
+use App\Models\User;
 
 class PeminjamanController extends Controller
 {
@@ -20,9 +21,10 @@ class PeminjamanController extends Controller
 
     public function index()
     {
-        $bukus = Buku::all();
-        $pinjams = Peminjaman::all();
-        return view('admin.peminjaman', compact('bukus', 'pinjams'));
+        $user = User::all();
+        $buku = Buku::all();
+        $pinjam = Peminjaman::all();
+        return view('admin.peminjaman', compact('user', 'buku', 'pinjam'));
     }
 
     /**
@@ -32,8 +34,10 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        $pinjams = Peminjaman::all();
-        return view('admin.peminjaman');
+        $pinjam = Peminjaman::all();
+        $user = User::all();
+        $buku = Buku::all();
+        return view('admin.peminjaman', compact('pinjam', 'user', 'buku')); 
     }
 
     /**
@@ -44,22 +48,17 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        $massage=[
-            'required' => ':isi kolom terlebih dahulu',
-            'numeric' => 'isi dengan angka'
-        ];
-        $this->validate($request,[
-            'name' => 'required',
-            'jurusan' => 'required',
-            'kelas' => 'required',
-            'buku' => 'required',
-            'tannggal' => 'required',
-            'notelp' => 'required|numeric'
-        ], $massage);
+        Peminjaman::create([
+            'id_user' => $request->id_user,
+            'id_buku' => $request->id_buku,
+            'nama' => $request->nama,
+            'jurusan' => $request->jurusan,
+            'kelas' => $request->kelas,
+            'no_telp' => $request->no_telp,
+            'tanggal_pinjam' => $request->tanggal_pinjam
+        ]);
 
-        Peminjaman::create();
-
-        return redirect('admin.riwayat');
+        return redirect('riwayat');
     }
 
     /**
@@ -70,7 +69,7 @@ class PeminjamanController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

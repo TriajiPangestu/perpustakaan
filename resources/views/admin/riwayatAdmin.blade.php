@@ -16,20 +16,26 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Judul</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Kelas</th>
+                            <th scope="col">Jurusan</th>
+                            <th scope="col">Buku</th>
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Tanggal Kembali</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                 <tbody>
                 @foreach ($pinjams as $pinjam)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
+                        <td>{{ $pinjam->nama }}</td>
+                        <td>{{ $pinjam->kelas }}</td>
+                        <td>{{ $pinjam->jurusan }}</td>
                         <td value="{{ $pinjam->id_buku }}">{{ $pinjam->buku->judul }}</td>
-                        <td>Belum diambil</td>
                         <td>{{ $pinjam->tanggal_pinjam }}</td>
-                        <td>23-01-2023</td>
+                        <td>tanggal kembali</td>
+                        <td>status</td>
                     </tr>
                 @endforeach
                 </tbody>

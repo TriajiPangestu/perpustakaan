@@ -12,15 +12,24 @@ use App\Models\Riwayat;
 class Peminjaman extends Model
 {
     use HasFactory;
-    protected $guard = [];
+
     protected $table = 'peminjaman';
+    protected $fillable = [
+        'id_user',
+        'id_buku',
+        'nama',
+        'jurusan',
+        'kelas',
+        'no_telp',
+        'tanggal_pinjam'
+    ];
 
     public function user() {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class);
     }
 
     public function buku() {
-        return $this->belongsTo(Buku::class); 
+        return $this->belongsTo(Buku::class, 'id_buku'); 
     }
 
     public function siswa() {

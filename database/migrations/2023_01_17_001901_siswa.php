@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
-            $table->integer('nisn');
-            $table->string('name');
-            $table->string('kelas');
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nama');
             $table->string('jurusan');
+            $table->string('kelas');
             $table->bigInteger('no_telp');
             $table->timestamps();
         });

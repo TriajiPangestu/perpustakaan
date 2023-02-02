@@ -20,7 +20,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', function () {
-    return view('admin.welcome');
+    return view('auth.login');
+});
+
+Route::get('/bukuadmin', function () {
+    return view('admin.bukuAdmin');
 });
 
 Route::get('/index', function () {

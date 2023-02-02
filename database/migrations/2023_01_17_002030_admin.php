@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('admin', function (Blueprint $table) {
             $table->id();
             $table->integer('kode_admin');
-            $table->string('name');
+            $table->string('nama');
             $table->timestamps();
         });
     }

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Buku;
-use App\Models\Kategori;
 
 class BukuController extends Controller
 {
@@ -20,9 +19,8 @@ class BukuController extends Controller
 
     public function index()
     {
-        $kategoris = Kategori::all();
-        $bukus = Buku::with('category')->get();
-        return view('admin.buku', compact('bukus', 'kategoris'));
+        $bukus = Buku::all();
+        return view('admin.buku', compact('bukus'));
     }
 
     /**
@@ -43,7 +41,15 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Buku::create([
+            'kode' => $request->kode,
+            'judul' => $request->judul,
+            'kategori' => $request->kategori,
+            'sinopsis' => $request->sinopsis,
+            'qty' => $request->qty
+        ]);
+
+        return redirect('buku');
     }
 
     /**

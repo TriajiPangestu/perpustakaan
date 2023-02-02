@@ -17,7 +17,7 @@ class User extends Authenticatable
     protected $table = 'users';
 
     public function peminjaman() {
-        return $this->hasMany(Peminjaman::class);
+        return $this->hasOne(Peminjaman::class, 'id_user');
     }
     /**
      * The attributes that are mass assignable.

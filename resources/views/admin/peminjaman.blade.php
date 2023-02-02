@@ -8,64 +8,52 @@
     <div class="col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-body">
-                {{-- @if(count($errors) >0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif --}}
-                <form method="POST" action="">
-                    @csrf
+                <form action="{{ route('peminjaman.store') }}" method="POST">
+                @csrf
                     <div class="form-group">
                         <label for="name">Nama</label>
-                        <input type="text" value="" class="form-control" id="name" name="name">
+                            <input type="hidden" class="form-control" name="id_user" value="{{ auth()->user()->id }}">
+                            <input type="text" class="form-control" id="nama"  value="{{ auth()->user()->name }}" name="nama">
                     </div>
                     <div class="form-group">
                         <label for="jurusan">Jurusan</label>
                         <select class="form-control form-select" name="jurusan" id="jurusan">
-                            <option value="">RPL</option>
-                            <option value="">DKV</option>
-                            <option value="">PSPT</option>
-                            <option value="">OTKP</option>
-                            <option value="">AKL</option>
-                            <option value="">BDPM</option>
-                            <option value="">PH</option>
-                            <option value="">TKJ</option>
+                            <option value="RPL">RPL</option>
+                            <option value="DKV">DKV</option>
+                            <option value="PSPT">PSPT</option>
+                            <option value="OTKP">OTKP</option>
+                            <option value="AKL">AKL</option>
+                            <option value="BDPM">BDPM</option>
+                            <option value="PH">PH</option>
+                            <option value="TKJ">TKJ</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="kelas">Kelas</label>
                         <select class="form-control form-select" id="kelas" name="kelas">
-                            <option value="">10</option>
-                            <option value="">11</option>
-                            <option value="">12</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
                         </select>
                     </div>
                     <div class="form-group">
                       <label for="kelas">Judul Buku</label>
-                      <select class="form-control form-select" id="buku" name="buku">
-                       @foreach ($bukus as $buku)
-                          <option value="">{{ $buku->judul }}</option>
+                      <select class="form-control form-select" id="id_buku" name="id_buku">
+                       @foreach ($buku as $item)
+                          <option value="{{ $item->id }}">{{ $item->judul }}</option>
                         @endforeach
                       </select>
                     </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        <input type="date" class="form-control" required id="tanggal_pinjam" name="tanggal_pinjam">
                     </div>
                     <div class="form-group">
                         <label for="no_telp">Nomor Telepon</label>
-                        <input type="number" class="form-control" id="notelp" name="notelp" >
+                        <input type="number" required class="form-control" id="no_telp" name="no_telp">
                     </div>
-                    <div class="form-group">
-                        <form action="{{ route('peminjaman.store') }}" method="POST">
-                            <input type="button" class="btn btn-sm btn-success" name="simpan" value="simpan">
-                            <input type="button" class="btn btn-sm btn-danger" value="batal">
-                        </form>
-                    </div>
+                        <input type="submit" class="btn btn-sm btn-success me-1" value="simpan">
+                        <input type="button" class="btn btn-sm btn-danger" value="batal">
                 </form>
             </div>
         </div>
