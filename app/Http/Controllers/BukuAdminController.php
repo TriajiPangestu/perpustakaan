@@ -5,22 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Buku;
 
-class BukuController extends Controller
+class BukuAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $buku = Buku::all();
-        return view('admin.buku', compact('buku'));
+        return view('admin.bukuAdmin', compact('buku'));
     }
 
     /**
@@ -41,7 +36,27 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // ambil informasi yang diiupload
+        $file = $request->file('foto');
+
+        // rename
+        $nama_file = time()."_".$file->getClientOriginalName();
+
+        // proses upload
+        $tujuan_upload = './template/img';
+        $file->move($tujuan_upload, $nama_file);
+
+        Buku::create([
+            'kode' => $request->kode,
+            'judul' => $request->judul,
+            'kategori' => $request->kategori,
+            'sinopsis' => $request->sinopsis,
+            'qty' => $request->qty,
+            'foto' => $nama_file
+        ]);
+
+        return redirect('buku');
     }
 
     /**

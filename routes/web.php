@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\BukuAdminController;
+use App\Http\Controllers\RiwayatAdminController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +22,20 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('admin.landingpage');
 });
 
-Route::get('/bukuadmin', function () {
-    return view('admin.bukuAdmin');
+Route::get('/welcome', function () {
+    return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+// Route::get('/bukuadmin', function () {
+//     return view('admin.bukuAdmin');
+// });
 
 Route::get('/index', function () {
     return view('admin.index');
@@ -34,3 +44,5 @@ Route::get('/index', function () {
 Route::resource('buku', BukuController::class);
 Route::resource('peminjaman', PeminjamanController::class);
 Route::resource('riwayat', RiwayatController::class);
+Route::resource('bukuadmin', BukuAdminController::class);
+Route::resource('riwayatadmin', RiwayatAdminController::class);

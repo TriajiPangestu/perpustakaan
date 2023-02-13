@@ -3,7 +3,6 @@
 @section('content-title', 'Riwayat')
 
 @section('konten')
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card shadow mb-4">
@@ -22,19 +21,21 @@
                             <th scope="col">Tanggal Kembali</th>
                         </tr>
                     </thead>
-                <tbody>
-                @foreach ($pinjams as $pinjam)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td value="{{ $pinjam->id_buku }}">{{ $pinjam->buku->judul }}</td>
-                        <td>Belum diambil</td>
-                        <td>{{ $pinjam->tanggal_pinjam }}</td>
-                        <td>23-01-2023</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    @foreach ($pinjams as $pinjam)
+                    <tbody>
+                        <tr>
+                           
+                            <td>{{ $loop->iteration }}</td>
+                            <td value="{{ $pinjam->id_buku }}">{{ $pinjam->buku->judul }}</td>
+                            <td>Belum diambil</td>
+                            <td>{{date('d F Y',  strtotime($pinjam->tanggal_pinjam))}}</td>
+                            <td>{{date('d F Y',  strtotime('+7 days', strtotime($pinjam->tanggal_pinjam)))}}</td>
+                            
+                        </tr>
+                    </tbody>
+                    @endforeach
+                </table>
+            </div>
         </div>
-    </div>
 </div>
 @endsection

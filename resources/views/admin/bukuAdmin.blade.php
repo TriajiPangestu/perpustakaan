@@ -8,7 +8,7 @@
     <div class="col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-body">
-                <form action="{{ route('buku.store') }}" method="POST">
+                <form action="{{ route('bukuadmin.store') }}" enctype="multipart/form-data" method="POST">
                 @csrf
                     <div class="form-group">
                         <label>Kode Buku</label>
@@ -29,6 +29,10 @@
                     <div class="form-group">
                         <label>Stok Buku</label>
                         <input type="number" required class="form-control" required id="qty" name="qty">
+                    </div>
+                    <div class="form-group">
+                        <label for="foto">Gambar Cover Buku</label>
+                        <input required type="file" class="form-control" id="foto" name="foto" >
                     </div>
                         <input type="submit" class="btn btn-sm btn-success me-1" value="simpan">
                         <input type="button" class="btn btn-sm btn-danger" value="batal">

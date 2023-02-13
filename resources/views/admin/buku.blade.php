@@ -7,24 +7,19 @@
 
     <!-- Page Heading -->
     <div class="row">
-        @foreach ($bukus as $buku)
+        @foreach ($buku as $item)
         <div class="col-xl-3 col-md-12 mb-4 mr-5">
-                <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card">
+                <img src="{{asset('/template/img/'.$item->foto)}}" class="card-img-top" alt="">
                     <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary mb-1">{{ $buku->kode }}</div>
-                                <div class="text-s font-weight-bold text-primary text-uppercase mb-1">{{ $buku->judul }} </div>
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">KATEGORI :   {{ $buku->kategori }}</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $buku->sinopsis }}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
+                        <h5 class="card-title">{{ $item->kode }}</h5>
+                        <h5 class="card-title">{{ $item->judul }}</h5>
+                        <p class="card-text"><small class="text-muted">{{ $item->kategori }}</small></p>
+                        <p class="card-text">{{ $item->sinopsis}}.</p>
+                        <p class="card-text"><small class="text-muted">Stok : {{ $item->qty }}</small></p>
                     </div>
-                </div>
             </div>
+        </div>
         @endforeach
     </div>
 </div>

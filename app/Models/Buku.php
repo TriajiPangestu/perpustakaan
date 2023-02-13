@@ -16,7 +16,8 @@ class Buku extends Model
         'judul',
         'kategori',
         'sinopsis',
-        'qty'
+        'qty',
+        'foto'
     ];
 
     public function riwayat() {

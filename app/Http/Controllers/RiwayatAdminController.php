@@ -3,24 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Buku;
+use App\Models\Peminjaman;
 
-class BukuController extends Controller
+class RiwayatAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
-        $buku = Buku::all();
-        return view('admin.buku', compact('buku'));
+        $peminjaman = Peminjaman::all();
+        return view('admin.riwayatAdmin', compact('peminjaman'));
     }
 
     /**

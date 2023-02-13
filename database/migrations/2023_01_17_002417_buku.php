@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('kategori');
             $table->text('sinopsis');
             $table->integer('qty');
+            $table->char('foto');
             $table->timestamps();
         });
     }

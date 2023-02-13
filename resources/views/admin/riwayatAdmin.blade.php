@@ -26,15 +26,15 @@
                         </tr>
                     </thead>
                 <tbody>
-                @foreach ($pinjams as $pinjam)
+                @foreach ($peminjaman as $pinjam)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $pinjam->nama }}</td>
                         <td>{{ $pinjam->kelas }}</td>
                         <td>{{ $pinjam->jurusan }}</td>
                         <td value="{{ $pinjam->id_buku }}">{{ $pinjam->buku->judul }}</td>
-                        <td>{{ $pinjam->tanggal_pinjam }}</td>
-                        <td>tanggal kembali</td>
+                        <td>{{date('d F Y',  strtotime($pinjam->tanggal_pinjam))}}</td>
+                        <td>{{date('d F Y',  strtotime('+7 days', strtotime($pinjam->tanggal_pinjam)))}}</td>
                         <td>status</td>
                     </tr>
                 @endforeach
