@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Peminjaman;
+use App\Models\Riwayat;
+use App\Models\Siswa;
 
 class User extends Authenticatable
 {
@@ -16,7 +19,11 @@ class User extends Authenticatable
     protected $table = 'users';
 
     public function peminjaman() {
-        return $this->hasOne(Peminjaman::class, 'id_user');
+        return $this->hasOne(Peminjaman::class);
+    }
+
+    public function siswa() {
+        return $this->belongsTo(Siswa::class);
     }
     /**
      * The attributes that are mass assignable.

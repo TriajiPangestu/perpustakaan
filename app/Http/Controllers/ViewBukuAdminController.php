@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Peminjaman;
-use App\Models\RiwayatAdmin;
 use App\Models\Buku;
 
-class RiwayatAdminController extends Controller
+class ViewBukuAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,8 @@ class RiwayatAdminController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::all();
-        $riwayat = RiwayatAdmin::all();
-        return view('admin.riwayatAdmin', compact('peminjaman', 'riwayat'));
+        $buku = Buku::all();
+        return view('admin.viewBukuAdmin', compact('buku'));
     }
 
     /**
@@ -39,7 +36,7 @@ class RiwayatAdminController extends Controller
      */
     public function store(Request $request)
     {
-       
+        //
     }
 
     /**
@@ -61,7 +58,8 @@ class RiwayatAdminController extends Controller
      */
     public function edit($id)
     {
-
+        $buku = Buku::find($id);
+        return view('admin.editBuku', compact('buku'));
     }
 
     /**
@@ -71,39 +69,26 @@ class RiwayatAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function selesai(Request $request) 
-    {
-        $riwayat = RiwayatAdmin::where('id')->get();
-        $riwayat->update([
-            'status' => 2
-        ]);
-
-        return redirect()->route('riwayatadmin.index');
-    }
-
     public function update(Request $request, $id)
     {
-        RiwayatAdmin::find($id)
-        ->update([
-            'status' => 1
-        ]);
+         // ambil info file yang diupload
+         $file = $request->file('foto');
+         // rename + ambil nama file
+         $nama_file = time()."_".$file->getClientOriginalName();
+         // proses upload
+         $tujuan_upload = './template/img';
 
-        return redirect()->route('riwayatadmin.index');
-        
+         $file->move($tujuan_upload, $nama_file);
+        $buku = Buku::find($id);
+        $buku->kode = $request->kode;
+        $buku->judul = $request->judul;
+        $buku->kategori = $request->kategori;
+        $buku->sinopsis = $request->sinopsis;
+        $buku->qty = $request->qty;
+        $buku->foto = $nama_file;
+        $buku->save();
 
-        // $data = $request->validate([
-        //     'id_user' => 'required',
-        //     'id_buku' => 'required',
-        //     'nama' => 'required',           
-        //     'jurusan' => 'required',
-        //     'kelas' => 'required',            
-        //     'no_telp' => 'required',
-        //     'status' => 'required',
-        //     'tanggal_pinjam' => 'required',
-        //     'tanggal_kembali' => 'required',
-        // ]);
-
+        return redirect('viewbuku')->with('status', 'buku berhasil di edit');
     }
 
     /**
@@ -114,7 +99,7 @@ class RiwayatAdminController extends Controller
      */
     public function destroy($id)
     {
-        RiwayatAdmin::destroy($id);
-        return redirect()->back();
+        Buku::destroy($id);
+        return redirect()->back()->with('status', 'buku berhasil di hapus');
     }
 }

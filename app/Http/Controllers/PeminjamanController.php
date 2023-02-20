@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Peminjaman;
 use App\Models\Buku;
 use App\Models\User;
+use App\Models\RiwayatAdmin;
+use App\Models\Riwayat;
 
 class PeminjamanController extends Controller
 {
@@ -34,10 +36,7 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        $pinjam = Peminjaman::all();
-        $user = User::all();
-        $buku = Buku::all();
-        return view('admin.peminjaman', compact('pinjam', 'user', 'buku')); 
+        //
     }
 
     /**
@@ -47,7 +46,29 @@ class PeminjamanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $hari = $request->tanggal_pinjam;
+        $kembali = date('Y-m-d', strtotime('+7 days', strtotime($hari)));
+        RiwayatAdmin::create([
+            'id_user' => $request->id_user,
+            'id_buku' => $request->id_buku,
+            'nama' => $request->nama,
+            'jurusan' => $request->jurusan,
+            'kelas' => $request->kelas,
+            'no_telp' => $request->no_telp,
+            'status' => '0',
+            'tanggal_pinjam' => $request->tanggal_pinjam,
+            'tanggal_kembali' => $kembali
+        ]);
+
+        Riwayat::create([
+            'id_user' => $request->id_user,
+            'id_buku' => $request->id_buku,
+            'status' => '0',
+            'tanggal_pinjam' => $request->tanggal_pinjam,
+            'tanggal_kembali' => $kembali
+        ]);
+        
         Peminjaman::create([
             'id_user' => $request->id_user,
             'id_buku' => $request->id_buku,
@@ -57,8 +78,8 @@ class PeminjamanController extends Controller
             'no_telp' => $request->no_telp,
             'tanggal_pinjam' => $request->tanggal_pinjam
         ]);
-
         return redirect('riwayat');
+        
     }
 
     /**
@@ -69,7 +90,7 @@ class PeminjamanController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**

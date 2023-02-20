@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Models\Riwayat;
-use App\Models\Peminjaman;
+use App\Models\Siswa;
+use App\Models\RiwayatAdmin;
 use App\Models\Buku;
 
 class RiwayatController extends Controller
@@ -21,10 +22,10 @@ class RiwayatController extends Controller
     
     public function index()
     {
-        $buku = Buku::all();
-        $pinjams = Peminjaman::all();
-        $riwayats = Riwayat::all();
-        return view('admin.riwayat', compact('pinjams', 'riwayats'));
+        $user = RiwayatAdmin::where('id_user', Auth::user()->id)->get();
+        $siswa = Siswa::all();
+        $riwayat = RiwayatAdmin::all();
+        return view('admin.riwayat', compact('user', 'siswa', 'riwayat'));
     }
 
     /**

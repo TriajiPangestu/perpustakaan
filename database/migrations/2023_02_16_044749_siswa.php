@@ -14,14 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('siswa', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nama');
-            $table->string('jurusan');
-            $table->string('kelas');
-            $table->bigInteger('no_telp');
-            $table->timestamps();
+        $table->id();
+        $table->bigInteger('id_user')->unsigned();
+        $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+        $table->bigInteger('id_riwayat')->unsigned();
+        $table->foreign('id_riwayat')->references('id')->on('riwayat_admin')->onDelete('cascade')->onUpdate('cascade');
+        $table->timestamps();
         });
     }
 

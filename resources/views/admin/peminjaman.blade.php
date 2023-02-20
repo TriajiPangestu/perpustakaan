@@ -39,21 +39,18 @@
                     <div class="form-group">
                       <label for="kelas">Judul Buku : Stok</label>
                       <select class="form-control form-select" id="id_buku" name="id_buku">
-                       @foreach ($buku as $item)
+                        @foreach ($buku as $item)
+                        @if ($item->qty == 0)
+                        @else
                           <option value="{{ $item->id }}">{{ $item->judul }} : {{$item->qty}}</option>
+                        @endif
                         @endforeach
                       </select>
                     </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal</label>
                         <input type="date" class="form-control" required id="tanggal_pinjam" name="tanggal_pinjam">
-                    </div>
-                    <?php
-                    //menangkap post tgl pinjam
-		            $tgl_p='tanggal_pinjam';
-                    //membuat tgl kembali
-                    $tgl_k=date('Y-m-d', strtotime('+7 days', strtotime($tgl_p)));
-                    ?>
+                        </div>
                     <div class="form-group">
                         <label for="no_telp">Nomor Telepon</label>
                         <input type="number" required class="form-control" id="no_telp" name="no_telp">

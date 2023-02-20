@@ -15,22 +15,32 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">Nama</th>
                             <th scope="col">Judul</th>
                             <th scope="col">Status</th>
                             <th scope="col">Tanggal Pinjam</th>
                             <th scope="col">Tanggal Kembali</th>
                         </tr>
                     </thead>
-                    @foreach ($pinjams as $pinjam)
+                    @foreach ($user as $user)
                     <tbody>
                         <tr>
-                           
                             <td>{{ $loop->iteration }}</td>
-                            <td value="{{ $pinjam->id_buku }}">{{ $pinjam->buku->judul }}</td>
-                            <td>Belum diambil</td>
-                            <td>{{date('d F Y',  strtotime($pinjam->tanggal_pinjam))}}</td>
-                            <td>{{date('d F Y',  strtotime('+7 days', strtotime($pinjam->tanggal_pinjam)))}}</td>
-                            
+                            <td>{{ $user->user->name }}</td>
+                            <td>{{ $user->buku->judul}}</td>
+                            <td>
+                            @if($user->status == 0)
+                            <div class="badge bg-warning text-white">Belum diambil</div>
+                            @elseif($user->status == 1)
+                            <div class="badge bg-primary text-white">Dipinjam</div>
+                            @elseif($user->tanggal_kembali < now())
+                            <div class="badge bg-danger text-white">Belum di Kembalikan</div>
+                            @else
+                            <div class="badge bg-success text-white">Selesai</div>
+                            @endif
+                            </td>
+                            <td>{{date('d F Y',  strtotime($user->tanggal_pinjam))}}</td>
+                            <td>{{date('d F Y',  strtotime($user->tanggal_kembali))}}</td>
                         </tr>
                     </tbody>
                     @endforeach

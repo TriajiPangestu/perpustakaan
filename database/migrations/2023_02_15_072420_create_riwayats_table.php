@@ -13,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('riwayat_admin', function (Blueprint $table) {
+        Schema::create('riwayats', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_user')->unsigned();
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('id_buku')->unsigned();
             $table->foreign('id_buku')->references('id')->on('buku')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nama');
-            $table->string('jurusan');
-            $table->integer('kelas');
-            $table->bigInteger('no_telp');
             $table->string('status');
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
@@ -37,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('riwayat_admin');
+        Schema::dropIfExists('riwayats');
     }
 };

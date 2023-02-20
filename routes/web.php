@@ -7,6 +7,7 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\BukuAdminController;
 use App\Http\Controllers\RiwayatAdminController;
+use App\Http\Controllers\ViewBukuAdminController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,10 @@ Route::get('/index', function () {
 });
 
 Route::resource('buku', BukuController::class);
+Route::resource('viewbuku', ViewBukuAdminController::class);
+Route::get('/viewbuku/{viewbuku}/hapus', [ViewBukuAdminController::class, 'destroy'])->name('viewbuku.hapus');
 Route::resource('peminjaman', PeminjamanController::class);
 Route::resource('riwayat', RiwayatController::class);
 Route::resource('bukuadmin', BukuAdminController::class);
 Route::resource('riwayatadmin', RiwayatAdminController::class);
+Route::match(array('PUT', 'PATCH'), '/selesai', [RiwayatAdminController::class, 'selesai'])->name('selesai');

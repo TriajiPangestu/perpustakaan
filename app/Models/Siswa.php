@@ -4,16 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Peminjaman;
+use App\Models\RiwayatAdmin;
+use App\Models\User;
 
 class Siswa extends Model
 {
     use HasFactory;
     
-    protected $guard = [];
+    protected $guarded = [];
     protected $table = 'siswa';
 
-    public function pinjam(){
-        return $this->hasMany(Peminjaman::class, 'id_siswa');
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function riwayat(){
+        return $this->belongsTo(RiwayatAdmin::class, 'id_riwayat');
     }
 }
