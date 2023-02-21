@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('admin.admin')
 @section('title', 'buku')
 @section('content-title', 'buku')
 @section('konten')

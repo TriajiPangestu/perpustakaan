@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('admin.admin')
 @section('title', 'Dashboard')
 @section('content-title', 'Dashboard')
 @section('konten')
@@ -8,7 +8,7 @@
     <!-- Page Heading -->
     <div class="row">
         <div class="">
-                <p class="fs-1 text-center">Selamat Datang {{ auth()->user()->name }}</p>
+                <h1 class="text-center">Selamat Datang {{ auth()->user()->name }}</h1>
         </div>
     </div>
 </div>

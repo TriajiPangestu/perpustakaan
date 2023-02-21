@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-md-12 box">
                         <div>
-                        <i class="text-dark fa-solid fa-leaf fa-2xl"></i>
+                        <i class="fa-solid fa-clock-rotate-left fa-2xl"></i>
                     </div> <br>
                         <h5>Riwayat Peminjaman</h5>
                         <div>

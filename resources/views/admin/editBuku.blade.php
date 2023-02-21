@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('admin.admin')
 @section('title', 'Input_Buku')
 @section('content-title', 'Input_Buku')
 
@@ -33,7 +33,8 @@
                     </div>
                     <div class="form-group">
                         <label for="foto">Gambar Cover Buku</label>
-                        <input value="{{$buku->foto}}" required type="file" class="form-control" id="foto" name="foto" >
+                        <input value="{{$buku->foto}}" type="file" class="form-control" id="foto" name="foto" >
+                        <img src="{{asset('/template/img/'.$buku->foto) }}" width="200" alt="" class="img-thumbnail">
                     </div>
                         <input type="submit" class="btn btn-sm btn-success me-1" value="simpan">
                         <input type="button" class="btn btn-sm btn-danger" value="batal">

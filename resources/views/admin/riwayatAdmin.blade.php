@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('admin.admin')
 @section('title', 'Riwayat')
 @section('content-title', 'Riwayat')
 
@@ -19,7 +19,7 @@
                             <th scope="col">Nama</th>
                             <th scope="col">Kelas</th>
                             <th scope="col">Jurusan</th>
-                            <th>Nomor Telepon</th>
+                            <th scope="col">Nomor Telepon</th>
                             <th scope="col">Buku</th>
                             <th scope="col">Status</th>
                             <th scope="col">Tanggal Pinjam</th>
@@ -64,10 +64,9 @@
                         </td>
                         @else
                         <td class="text-nowrap">
-                        <form class="d-inline" action="{{route('selesai', $pinjam->id)}}" method="POST">
+                        <form class="d-inline" action="{{route('button.update', $pinjam->id)}}" method="POST">
                             @csrf
                             @method('PUT')
-                            <input type="hidden" name="status" value="2">
                             <button type="submit" class="btn btn-sm btn-success">Selesai</button>
                         </form>
                         <form class="d-inline" action="{{ route('riwayatadmin.destroy', $pinjam->id) }}" method="POST">

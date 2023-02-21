@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Peminjaman;
 use App\Models\RiwayatAdmin;
-use App\Models\Buku;
 
-class RiwayatAdminController extends Controller
+class ButtonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class RiwayatAdminController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::all();
-        $riwayat = RiwayatAdmin::all();
-        return view('admin.riwayatAdmin', compact('peminjaman', 'riwayat'));
+        //
     }
 
     /**
@@ -39,7 +35,7 @@ class RiwayatAdminController extends Controller
      */
     public function store(Request $request)
     {
-       
+        //
     }
 
     /**
@@ -61,7 +57,7 @@ class RiwayatAdminController extends Controller
      */
     public function edit($id)
     {
-
+        //
     }
 
     /**
@@ -71,29 +67,15 @@ class RiwayatAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function update(Request $request, $id)
     {
+        // dd($request);
         RiwayatAdmin::find($id)
         ->update([
-            'status' => 1
+            'status' => 2
         ]);
 
         return redirect()->route('riwayatadmin.index');
-        
-
-        // $data = $request->validate([
-        //     'id_user' => 'required',
-        //     'id_buku' => 'required',
-        //     'nama' => 'required',           
-        //     'jurusan' => 'required',
-        //     'kelas' => 'required',            
-        //     'no_telp' => 'required',
-        //     'status' => 'required',
-        //     'tanggal_pinjam' => 'required',
-        //     'tanggal_kembali' => 'required',
-        // ]);
-
     }
 
     /**
@@ -104,7 +86,6 @@ class RiwayatAdminController extends Controller
      */
     public function destroy($id)
     {
-        RiwayatAdmin::destroy($id);
-        return redirect()->back();
+        //
     }
 }

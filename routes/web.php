@@ -8,6 +8,7 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\BukuAdminController;
 use App\Http\Controllers\RiwayatAdminController;
 use App\Http\Controllers\ViewBukuAdminController;
+use App\Http\Controllers\ButtonController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,11 @@ Route::get('/welcome', function () {
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
-});
+})->name('dashboard');
+
+Route::middleware('role:admin')->get('/dashboardadmin', function () {
+    return view('admin.dashboardAdmin');
+})->name('dashboardadmin');
 
 // Route::get('/bukuadmin', function () {
 //     return view('admin.bukuAdmin');
@@ -43,10 +48,12 @@ Route::get('/index', function () {
 });
 
 Route::resource('buku', BukuController::class);
-Route::resource('viewbuku', ViewBukuAdminController::class);
-Route::get('/viewbuku/{viewbuku}/hapus', [ViewBukuAdminController::class, 'destroy'])->name('viewbuku.hapus');
+Route::middleware('role:admin')->resource('viewbuku', ViewBukuAdminController::class);
+Route::middleware('role:admin')->get('/viewbuku/{viewbuku}/hapus', [ViewBukuAdminController::class, 'destroy'])->name('viewbuku.hapus');
 Route::resource('peminjaman', PeminjamanController::class);
 Route::resource('riwayat', RiwayatController::class);
-Route::resource('bukuadmin', BukuAdminController::class);
-Route::resource('riwayatadmin', RiwayatAdminController::class);
-Route::match(array('PUT', 'PATCH'), '/selesai', [RiwayatAdminController::class, 'selesai'])->name('selesai');
+Route::resource('button', ButtonController::class);
+Route::middleware('role:admin')->resource('bukuadmin', BukuAdminController::class);
+Route::middleware('role:admin')->resource('riwayatadmin', RiwayatAdminController::class);
+// Route::middleware('role:admin')->post('/selesai', [ButtonController::class, 'selesai'])->name('selesai');
+// Route::middleware('role:admin')->match(array('PUT', 'PATCH'), '/selesai', [ButtonController::class, 'selesai'])->name('selesai');

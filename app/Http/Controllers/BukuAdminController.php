@@ -56,7 +56,7 @@ class BukuAdminController extends Controller
             'foto' => $nama_file
         ]);
 
-        return redirect('buku');
+        return redirect('viewbuku');
     }
 
     /**

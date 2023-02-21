@@ -21,13 +21,13 @@
 
     <!-- Nav Item - peminjaman -->
     <li class="nav-item">
-        <a class="nav-link" href="/peminjaman">
+        <a class="nav-link" href="/bukuadmin">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>peminjaman</span></a>
+            <span>Tambah Buku</span></a>
     </li>
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="/riwayat">
+        <a class="nav-link" href="/riwayatadmin">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Riwayat</span></a>
     </li>
