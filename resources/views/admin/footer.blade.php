@@ -1,6 +1,6 @@
 <!-- Footer -->
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
+<footer class="sticky-footer">
+    <div class="container">
         <div class="copyright text-center my-auto">
             <span></span>
         </div>

@@ -3,26 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Buku;
-use App\Models\Kategori;
+use App\models\Kategori;
 
-class BukuController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $kategori = Kategori::all();
-        $buku = Buku::all();
-        return view('admin.buku', compact('kategori', 'buku'));
+        return view('admin.kategori');
     }
 
     /**
@@ -43,7 +36,11 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Kategori::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->back();
     }
 
     /**

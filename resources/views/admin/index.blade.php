@@ -47,7 +47,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">@yield('content-title')</h1>
+                    <h1 class="h3 mb-4 text-dark text-center" style="font-family: times; text-color: ">@yield('content-title')</h1>
                     @yield('konten')
 
                 </div>

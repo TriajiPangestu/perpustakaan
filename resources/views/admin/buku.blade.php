@@ -1,6 +1,6 @@
 @extends('admin.index')
-@section('title', 'buku')
-@section('content-title', 'buku')
+@section('title', 'Buku')
+@section('content-title', 'Buku')
 @section('konten')
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $item->kode }}</h5>
                         <h5 class="card-title">{{ $item->judul }}</h5>
-                        <p class="card-text"><small class="text-muted">{{ $item->kategori }}</small></p>
+                        <p class="card-text"><small class="text-muted">{{ $item->kategori->name }}</small></p>
                         <p class="card-text">{{ $item->sinopsis}}.</p>
                         <p class="card-text"><small class="text-muted">Stok : {{ $item->qty }}</small></p>
                     </div>

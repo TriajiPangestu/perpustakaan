@@ -8,8 +8,9 @@
     <div class="col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-body">
+                <a href="{{route('kategori.index') }}" class="mb-2 text-end btn btn-sm btn-warning">Tambah Kategori</a>
                 <form action="{{ route('bukuadmin.store') }}" enctype="multipart/form-data" method="POST">
-                @csrf
+                    @csrf
                     <div class="form-group">
                         <label>Kode Buku</label>
                         <input type="number" required class="form-control" id="kode" name="kode">
@@ -18,9 +19,19 @@
                         <label>Judul Buku</label>
                         <input type="text" required class="form-control" id="judul" name="judul">
                     </div>
-                    <div class="form-group">
-                        <label">Kategori Buku</label>
-                        <input type="text" required class="form-control" id="kategori" name="kategori">
+                    <div class="form-group ">
+                            <label">Kategori Buku</label>
+                            @if ($kategori -> isEmpty()) 
+                                <select name="" class="form-control form-select" id="">
+                                    <option>Tambahkan Kategori Terlebih Dahulu</option>
+                                </select>    
+                            @else 
+                            <select name="id_kategori" class="form-control form-select" id="">
+                                    @foreach ($kategori as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                </select>               
+                            @endif
                     </div>
                     <div class="form-group">
                       <label>Sinopsis Buku</label>

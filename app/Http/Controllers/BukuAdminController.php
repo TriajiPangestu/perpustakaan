@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Buku;
+use App\Models\Kategori;
 
 class BukuAdminController extends Controller
 {
@@ -15,7 +16,8 @@ class BukuAdminController extends Controller
     public function index()
     {
         $buku = Buku::all();
-        return view('admin.bukuAdmin', compact('buku'));
+        $kategori = Kategori::all();
+        return view('admin.bukuAdmin', compact('kategori', 'buku'));
     }
 
     /**
@@ -48,9 +50,9 @@ class BukuAdminController extends Controller
         $file->move($tujuan_upload, $nama_file);
 
         Buku::create([
+            'id_kategori' => $request->id_kategori,
             'kode' => $request->kode,
             'judul' => $request->judul,
-            'kategori' => $request->kategori,
             'sinopsis' => $request->sinopsis,
             'qty' => $request->qty,
             'foto' => $nama_file

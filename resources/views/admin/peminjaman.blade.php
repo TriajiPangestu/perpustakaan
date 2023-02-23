@@ -1,6 +1,6 @@
 @extends('admin.index')
-@section('title', 'peminjaman')
-@section('content-title', 'peminjaman')
+@section('title', 'Peminjaman')
+@section('content-title', 'Peminjaman')
 
 @section('konten')
 
@@ -8,6 +8,7 @@
     <div class="col-lg-12">
         <div class="card shadow mb-4">
             <div class="card-body">
+                <h4 class="text-dark" style="font-family: times;">*Note: Saat mengambil buku wajib membawa Kartu Pelajar.</h4>
                 <form action="{{ route('peminjaman.store') }}" method="POST">
                 @csrf
                     <div class="form-group">

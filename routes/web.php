@@ -9,6 +9,7 @@ use App\Http\Controllers\BukuAdminController;
 use App\Http\Controllers\RiwayatAdminController;
 use App\Http\Controllers\ViewBukuAdminController;
 use App\Http\Controllers\ButtonController;
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,7 @@ Route::resource('peminjaman', PeminjamanController::class);
 Route::resource('riwayat', RiwayatController::class);
 Route::resource('button', ButtonController::class);
 Route::middleware('role:admin')->resource('bukuadmin', BukuAdminController::class);
+Route::middleware('role:admin')->resource('kategori', KategoriController::class);
 Route::middleware('role:admin')->resource('riwayatadmin', RiwayatAdminController::class);
 // Route::middleware('role:admin')->post('/selesai', [ButtonController::class, 'selesai'])->name('selesai');
 // Route::middleware('role:admin')->match(array('PUT', 'PATCH'), '/selesai', [ButtonController::class, 'selesai'])->name('selesai');

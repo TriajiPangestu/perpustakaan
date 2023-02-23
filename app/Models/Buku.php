@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Riwayat;
+use App\Models\Kategori;
 
 class Buku extends Model
 {
@@ -12,9 +13,9 @@ class Buku extends Model
 
     protected $table = 'buku';
     protected $fillable = [
+        'id_kategori',
         'kode',
         'judul',
-        'kategori',
         'sinopsis',
         'qty',
         'foto'
@@ -22,5 +23,9 @@ class Buku extends Model
 
     public function riwayat() {
         return $this->hasMany(Riwayat::class); 
+    }
+
+    public function kategori() {
+        return $this->belongsTo(Kategori::class, 'id_kategori'); 
     }
 }
